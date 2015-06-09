@@ -1,0 +1,17 @@
+{% include "header.html" %}
+        <h1>Fast 투표</h1>
+        <a href="/polls/add">ADD Poll</a>
+        <hr>
+        간단한 투표 어플리케이션<br>
+        {% if notice %}
+        <p style="color:blue;">{{notice}}</p>
+        {% endif %}
+        <br>투표 리스트<br>
+            <ul>
+                {% for poll in polls %}
+                <li>
+                    <a href="/polls/{{poll.id}}">{{poll.question}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+{% include "footer.html" %}
