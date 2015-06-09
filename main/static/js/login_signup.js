@@ -39,7 +39,7 @@ $(function($){
     $idInput.on('keyup',function(){
         var str = $idInput.val();
         var exceptStr = str.match(/[^@.\+\-_\w ]+/g);
-        if(str.match(/[^@.\+\-_\w ]+/g)){
+        if(exceptStr){
             $idText.text(exceptStr+'는 불가능합니다.').css({color:'#bf4040'});
             able1 = 0;
         }else{
