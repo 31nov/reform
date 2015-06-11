@@ -74,18 +74,81 @@ def write(request):
     return render(request, 'write.html',context)
 
 
-#@login_required
-#def write(request):
-#    try:
-#        if request.session['error']:
-#            error_message = request.session['error']
-#            del request.session['error']
-#    except KeyError:
-#        error_message = None
-#    
-#    context = {
-#        'error_message' : error_message
-#    }
-#    
-#    return render(request, 'write.html', context)
+@login_required
+def write(request):
+    try:
+        if request.session['error']:
+            error_message = request.session['error']
+            del request.session['error']
+    except KeyError:
+        error_message = None
+    
+    context = {
+        'error_message' : error_message
+    }
+    
+    return render(request, 'write.html', context)
+
+@login_required
+def submit_write(request):
+    try:
+        title = request.POST['title'].strip()
+        content = request.POST['content'].strip()
+        if file_image:
+            file_image = request.POST['file_image'].strip()
+        else:
+            file_image = 'X'
+        if file_game_apk :
+            file_game_apk = request.POST['file_game_apk'].strip()
+        else:
+            file_game_apk='X'
+        if file_game_ios:
+            file_game_ios = request.POST['file_game_ios'].strip()
+        else:
+            file_game_ios='X'
+        if file_game_exe:
+            file_game_exe = request.POST['file_game_exe'].strip()
+        else:
+            file_game_exe = 'X'
+        if file_game_mac:
+            file_game_mac = request.POST['file_game_mac'].strip()
+        else:
+            file_game_mac = 'X'
+
+    except KeyError:
+        request.session['error']='올바른 요청이 아닙니다.'
+        return redirect('write')
+    else:
+        if title and content:
+            article = main.article_set.create(title=title, content=content, file_image = file_image, file_game_apk = file_game_apk, file_game_ios = file_game_ios, file_game_exe = file_game_exe, file_game_mac = file_game_mac, user_id=request.user.id)
+        else:
+            request.session['error'] = '글 제목 혹은 내용을 입력해주세요.'
+            return redirect('write')
+    return redirect('index')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

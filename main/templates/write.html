@@ -5,8 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     {% load staticfiles %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href='{% static "css/write.css" %}'>
-	<title>write_31nov</title>
+    
+	<link rel="stylesheet" href='{% static "css/index.css" %}'>
+	<title>31nov</title>
 </head>
 <body>
     <div class="header_body">
@@ -20,27 +21,83 @@
             
 		</header>
 		<main id="main">
-            <form method="post" action="{% url 'submit_newList' board_id %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label>글제목</label>
-                <input type="text" name="title" placeholder="제목을 입력하세요" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>내용</label>
-                <textarea name="content" rows="10" class="form-control" ></textarea>
-            </div>
-            <div class="form-group">
-                <div class="btn-group pull-right">
-                    <input type="submit" value="글저장" class="btn btn-primary" />
-                    <a href="{% url 'board' board_id %}" class="btn btn-default">취소</a>
+            <form method="post" action="{% url 'submit_write' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>글제목</label>
+                    <input type="text" name="title" placeholder="제목을 입력하세요" class="form-control" />
                 </div>
-            </div>
+                <div class="form-group">
+                    <label>내용</label>
+                    <textarea name="content" rows="10" class="form-control" ></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="btn-group pull-right">
+                        <input type="submit" value="글저장" class="btn btn-primary" />
+                        <a href="{% url 'index' %}" class="btn btn-default">취소</a>
+                    </div>
+                </div>
             </form>
         </main>
-		
+		<nav class="lnb">
+ 				  <button class="lnbbtn" type="button">
+				  	<img src='{% static "image/lnbbtn2.png" %}'>
+                      <span class="lnbbtnToggle">메뉴 열기</span> 
+				  </button>
+
+					<h2>전체 메뉴</h2>
+					<ul class="lnbMenu">
+						<li>
+                            <a href="news">뉴스</a>
+                            <button type="button" name="+" value="addTagname">+</button>
+                        </li>
+							<ul>
+								<li><a href="news1">한국 뉴스</a></li>
+								<li><a href="news2">중국 뉴스</a></li>
+								<li><a href="news3">일본 뉴스</a></li>
+								<li><a href="news4">미국 뉴스</a></li>	
+							</ul>
+						<li>
+                            <a href="review">리뷰</a>
+                            <button type="button" name="+" value="addTagname">+</button>
+                        </li>
+							<ul>
+								<li><a href="review1">한국 리뷰</a></li>
+								<li><a href="review2">중국 리뷰</a></li>
+								<li><a href="review3">일본 리뷰</a></li>
+								<li><a href="revu기ew4">미국 리뷰</a></li>
+							</ul>
+						<li>
+                            <a href="forum">포럼</a>
+                            <button type="button" name="+" value="addTagname">+</button>
+                        </li>
+							<ul>
+								<li><a href="forum1">게임 포럼</a></li>
+								<li><a href="forum2">스마트폰 포럼</a></li>
+								<li><a href="forum3">자동차 포럼</a></li>
+							</ul>
+						<li>
+                            <a href="community">커뮤니티</a>
+                            <button type="button" name="+" value="addTagname">+</button>
+                        </li>
+					</ul>	
+				</nav>
+		<aside class="aside">
+			<h2>바로 가기</h2>
+			<ul>
+				<li><a href="#">참고 링크1</a></li>
+				<li><a href="#">참고 링크2</a></li>
+				<li><a href="#">참고 링크3</a></li>
+			</ul>
+		</aside>
         
 		<div class="bottommenu v">
+<!--
+			<button class="gototop" type="button">
+				<img src="gototop.png" %}'>
+				최상단으로 이동하기
+			</button>
+-->
 			<button type="button">
 				리플레쉬
                 <a href="javascript:location.reload()">
@@ -60,95 +117,50 @@
 				친구가 좋아하는 항목보기
 			</button>
 			<span class="userlogin">
+				{% if user.is_authenticated %}
 				<strong class="username">
-					31nov 
-				</strong> 
-				<button class="login btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#myModal">
+					{{user.username}} 
+				</strong>
+                <a class="login btn btn-primary btn-lg" type="button" href="{% url 'user_logout' %}">
 					<img src='{% static "image/login.png" %}'>
 					로그아웃하기
-				</button>
-                <!-- Log In modal -->
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Log In</h4>
-                            </div>
-                                <!--  LogIn : Email, P/W 작성 공간   -->
-                                <div class="login_body modal-body">
-                                    <form class="logInForm form-inline" id="loginFormID">
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginEmail">Email address</label>
-                                            <input type="email" class="form-control" id="loginEmail" name="userId" placeholder="E-mail" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="sr-only" for="loginPassword">Password</label>
-                                            <input type="password" class="form-control" id="loginPassword" name="userPword" placeholder="Password" required>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox"> Remember me
-                                            </label>
-                                            <label>
-                                                <a>Forget Password?</a>
-                                            </label>
-                                            <label>
-                                                <a>Forget E-mail?</a>
-                                            </label>
-                                        </div>
-                                    <button type="submit" class="signIn btn btn-default">Sign in</button>
-                                    </form>
-                                </div>
-                                <!--  LogIn : Email, P/W 작성 공간   -->
-                                <!--  create ID START   -->
-                                <div class="create_body modal-body">
-                                    <form class="createInForm form-horizontal" action="" method="POST">
-                                        <div class="form-group">
-                                            <label for="createName">Name</label>
-                                            <input type="text" class="form-control" id="createName" placeholder="Enter Name" value="{{userName}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="createEmail">Email (ID)</label>
-                                            <input type="email" class="form-control" id="createEmail" placeholder="Enter email" value="{{userEmail}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="createPassword">Password</label>
-                                            <input type="password" class="form-control" id="createPassword" placeholder="Password" value="{{userPassword}}" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="createRePassword">Repeat Password</label>
-                                            <input type="password" class="form-control" id="createRePassword" placeholder="Repeat Password" value="{{userName}}" required>
-                                            <p>비밀번호를 한번 더 써주세요.</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputFile">File input</label>
-                                            <input type="file" id="exampleInputFile">
-                                            <p class="help-block">Example block-level help text here.</p>
-                                        </div>
-                                        <button type="submit" class="createIn btn btn-default" value="OK">Create</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="checkbox2">
-                                        <a>create ID</a>
-                                        <a class="login">log in</a>
-                                    </div>
-                                </div>
-                                <!--  create ID END   -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Log In modal -->
+				</a>
+               {%else%}
+                <strong class="username">
+					로그인 
+				</strong>
+				<form method="post" action="{% url 'django.contrib.auth.views.login' %}" class="login btn btn-primary btn-lg" role="login">
+                    {% csrf_token %}
+                    <button type="submit">
+                        <img src='{% static "image/login.png" %}'>
+                        로그인하기
+                    </button>
+                </form>
+               {%endif%}
+
 			</span>
 		</div>
+        <div class="write">
+            <button>
+                <a href="{% url 'write' %}"><img src='{% static "image/writeIcon.png" %}'>글쓰기</a>
+            </button>
+        </div>
     	<footer>
 			<p>Copyright &copy; 31nov All rights reserved.</p>
 		</footer>
+	</div>
+<!--
+    <div id="test">
+        확인
     </div>
+-->
     <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
-    <script src='{% static "js/write.js" %}'></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src='{% static "js/index.js" %}'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
+
+
