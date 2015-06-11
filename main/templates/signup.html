@@ -23,17 +23,17 @@
                     {% csrf_token %}
                     <div class="form-group a">
                         <label for="username">Email (ID)<sup> 필수항목</sup></label>
-                        <input type="email" class="form-control idInput" name="username" placeholder="Enter email" value="{{userEmail}}" required>
+                        <input name="username" type="email" class="form-control idInput" placeholder="Enter email" value="{{userEmail}}" required>
                         <p>영문, 숫자, 특수문자( @ . + - _ )만 가능합니다.</p>
                     </div>
                     <div class="form-group b">
                         <label for="password">Password<sup> 필수항목</sup></label>
-                        <input id="createPassword" type="password" class="form-control pw" name="password" placeholder="Password" value="{{userPassword}}" required>
+                        <input name="password" id="createPassword" type="password" class="form-control pw" placeholder="Password" value="{{userPassword}}" required>
                         <p>4자리 이상이어야 합니다.</p>
                     </div>
                     <div class="form-group c">
                         <label for="password_confirm">Repeat Password<sup> 필수항목</sup></label>
-                        <input id="createRePassword" type="password" class="form-control pw" name="password_confirm" placeholder="Repeat Password" value="{{userName}}" required>
+                        <input name="password_confirm" id="createRePassword" type="password" class="form-control pw" placeholder="Repeat Password" value="{{userName}}" required>
                         <p>비밀번호를 한번 더 써 주세요.</p>
                     </div>
                     <div class="form-group">
@@ -41,7 +41,7 @@
                         <input type="file" name="userPic">
                     </div>
                     <div id="signInDiv">
-                        <button type="submit" class="createIn btn btn-default" value="OK" disabled>Create</button>
+                        <button type="submit" class="createIn btn btn-default" disabled>Create</button>
                     </div>
                 </form>
             <div class="modal-footer">

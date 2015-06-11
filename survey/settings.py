@@ -95,7 +95,6 @@ LANGUAGE_CODE = 'ko-KR'
 TIME_ZONE = 'Asia/Seoul'
 LOGIN_URL = '/login'
 
-LOGIN_URL = '/login'
 
 ##file 연결
 #MEDIA_URL = '/media/'

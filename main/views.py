@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from main.models import *
 from django.contrib.auth.models import User
 
@@ -22,7 +21,8 @@ def index(request):
     
     context = {
         'articles': articles,
-        'games':games
+        'games':games,
+        'error_message': error_message
     }
     return render(request, 'index1.html',context)
 
@@ -47,12 +47,15 @@ def signup_submit(request):
         username = request.POST['username'].strip()
         password = request.POST['password'].strip()
         password_confirm = request.POST['password_confirm'].strip()
-        userPic = request.POST['userPic'].strip()
+#        userPic = request.POST['userPic'].strip()
         
-        user = User(username = username, )
-        user.set_password(password)
-        user.save()
-        return redirect('index')
+        if username and password and password_confirm :
+            if password == password_confirm:
+                user = User(username = username)
+                user.set_password(password)
+                user.save()
+                return redirect('login')
+
     except KeyError:
         request.session['error'] = '올바른 요청이 아닙니다.'
         return redirect('signup')

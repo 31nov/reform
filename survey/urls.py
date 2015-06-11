@@ -28,3 +28,4 @@ urlpatterns = patterns('',
     url(r"^polls/submit/$",                                   submit_poll           , name='submit_poll'),
 
 )
+

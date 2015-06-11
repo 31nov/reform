@@ -23,26 +23,22 @@
                    {% csrf_token %}
                     <div class="form-group">
                         <label for="loginEmail">Email address</label>
-                        <input type="email" class="form-control" id="loginEmail" name="userId" placeholder="E-mail" required>
+                        <input type="email" class="form-control" id="loginEmail" name="loginEmail" placeholder="E-mail" required>
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Password</label>
-                        <input type="password" class="form-control" id="loginPassword" name="userPword" placeholder="Password" required>
+                        <input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Password" required>
                         <input type="hidden" name="next" value="/" />
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox"> Remember me
                         </label>
-                        <label>
-                            <a>Forget Password?</a>
-                        </label>
-                        <label>
-                            <a>Forget E-mail?</a>
-                        </label>
+                        <a>Forget Password?</a>
+                        <a>Forget E-mail?</a>
                     </div>
                     <div id="signInDiv">
-                        <button type="submit" class="signIn btn btn-default">Sign in</button>
+                        <button type="submit" class="signIn btn btn-default">Login</button>
                     </div>
                 </form>
                 <div class="modal-footer">
