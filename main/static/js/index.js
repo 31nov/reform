@@ -105,6 +105,7 @@ jQuery(function($){
     var $mainLiRemovest = $('#main> ul >li');
     var $writeUserInfor = $('.writeUserInfor');
     var $userPic = $('.userPic');
+    var $emptyPic = $('.emptyPic');
     var $connectUser = $('.connectUser');
     var $countView = $('.countView');
     
@@ -113,6 +114,7 @@ jQuery(function($){
         $mainLiRemovest.css({height:x+y+10});
         $writeUserInfor.css({height: x-8});
         $userPic.css({height:x-12}).css({width:x-12});
+        $emptyPic.css({height:x-12}).css({width:x-12});
         $connectUser.css({height: x});
         $countView.css({top:x+y});        
     }
@@ -121,7 +123,8 @@ jQuery(function($){
     //6-1. scroll조작 시 head_single, bottommenu 보이고,사라지고...
     var prevScrollTop = 0;
     var $bottommenu = $('.bottommenu');
-    
+    $header_single.css({visibility:'visible'});
+    $bottommenu.css({visibility:'visible'});
     $win.on('scroll', function(event){
         var $this = $(this);
         var scrollTop = $this.scrollTop();
@@ -224,6 +227,7 @@ jQuery(function($){
         var $this = $(this);
         var listHeight = $this.offset().top;
         var $mainListOther = $this.siblings();
+        
         if($this.is(':animated')){
            return;
         }
@@ -238,21 +242,26 @@ jQuery(function($){
                 .find('.writeUserInfor').css({background: backColor[0]}).end()
                 .find('.circle').css({background: backColor[3]});
             
-        var articleHeight = parseInt($this.find('.overView').css('height').slice(0,-2));
         if($this.is('.listOn')){//열려 있을 때
             $this.removeClass('listOn')
                 .css({display:'block'})
                 .find('.overView').slideUp(200);
             $mainListOther.toggle('slide')
-                .css({display:'block'});
-            $this.animate({height : 100})
-                .find('.clip').css({display:'block'});
+                .css({display:'block'}).end();
+            $this.css({height: 'auto'});
+            $this.find('.clip').css({display:'block'});
             $('html,body').animate({'scrollTop':preTop},200);
         }else{//닫혀 있을 때
             preTop = $win.scrollTop();
             $header_single.css({visibility:'visible'});
-            $this.addClass('listOn').css({display:'block'}).find('.overView').slideDown(200);
-            $this.animate({height : articleHeight + 110 },200);
+            $this.addClass('listOn').css({display:'block'}).find('.overView').slideDown(200).end()
+                .css({height : 'auto'},200);
+            var articleHeight = parseInt($this.css('height').slice(0,-2));
+            var image = parseInt($this.find('article').css('height').slice(0,-2));
+            console.log(articleHeight);
+            console.log(image);
+            $this.css({height:articleHeight+image+80});
+            //댓글이 달리면 이에 따라 80px값을 늘려주도록 넣어야 함
             $mainListOther.css({display:'block'}).toggle('slide');
             $('html,body').animate({'scrollTop':listHeight},200);
         }

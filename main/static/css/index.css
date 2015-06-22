@@ -274,6 +274,7 @@
         height: 0;/*js 5.에서 설정*/
         background: #F2EEAE;
         border-radius: 5px;
+        min-height: 100px;
     }
     #main small{
         position: absolute;
@@ -377,10 +378,21 @@
                 margin: 2px;
                 border-radius: 4px;
                 float: left;
+                position: absolute;
+            }
+            .emptyPic{
+                display: inline-block;
+                width: 0;/*js 5.에서 설정*/
+                height: 0;/*js 5.에서 설정*/
+                margin: 2px;
+                border-radius: 4px;
+                float: left;
+                position: absolute;
+                left: 0;
             }
             .userName{
                 display: inline-block;
-                margin: 0;
+                margin: 0 0 0 53px;
                 padding: 32px 0 0 6px;
                 color: #000;
 /*                color: #FFC519;*/
@@ -421,6 +433,9 @@
                     font-weight: 300;
                     text-overflow: ellipsis;
                 }
+        .image{
+            width: 100%;   
+        }
         .hiddenView{
             display: none;
         }
@@ -428,7 +443,7 @@
             display: none;
             position: relative;
             box-sizing: border-box;
-            min-height: 220px;
+/*            min-height: 220px;*/
             top: 32px;
             background: #fff;
             border-bottom-right-radius: 5px;
@@ -440,7 +455,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 8px;
-            min-height: 220px;
+/*            min-height: 220px;*/
         }
         .countView{
             box-sizing: border-box;

@@ -11,7 +11,7 @@ import json
 def index(request):
     articles = Article.objects.order_by('-written_date')
     games = Game.objects.order_by('game')
-    
+
     try:
         if request.session['error']:
             error_message = request.session['error']

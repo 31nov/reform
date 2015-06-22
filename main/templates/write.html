@@ -6,17 +6,17 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     
-	<link rel="stylesheet" href='{% static "css/index.css" %}'>
+	<link rel="stylesheet" href='{% static "css/write.css" %}'>
 	<title>31nov</title>
 </head>
 <body>
     <div class="header_body">
 		<header>
 			<div class="header_single v">
-               <div>
-                   <img src='{% static "image/title.png" %}'>
-               </div>
-				<h4>글쓰기</h4>
+                <a class="titleimage" href="{% url 'index' %}">
+                    <img src='{% static "image/title.png" %}'>
+                </a>
+                <h4>글쓰기</h4>
 			</div>
             
 		</header>
@@ -29,7 +29,10 @@
                 </div>
                 <div class="form-group">
                     <label>내용</label>
-                    <textarea name="content" rows="10" class="form-control" ></textarea>
+                    <textarea name="content" rows="30" class="form-control" ></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="file" id="id_image_file" name="image_file">
                 </div>
                 <div class="form-group">
                     <div class="btn-group pull-right">
@@ -39,57 +42,6 @@
                 </div>
             </form>
         </main>
-		<nav class="lnb">
- 				  <button class="lnbbtn" type="button">
-				  	<img src='{% static "image/lnbbtn2.png" %}'>
-                      <span class="lnbbtnToggle">메뉴 열기</span> 
-				  </button>
-
-					<h2>전체 메뉴</h2>
-					<ul class="lnbMenu">
-						<li>
-                            <a href="news">뉴스</a>
-                            <button type="button" name="+" value="addTagname">+</button>
-                        </li>
-							<ul>
-								<li><a href="news1">한국 뉴스</a></li>
-								<li><a href="news2">중국 뉴스</a></li>
-								<li><a href="news3">일본 뉴스</a></li>
-								<li><a href="news4">미국 뉴스</a></li>	
-							</ul>
-						<li>
-                            <a href="review">리뷰</a>
-                            <button type="button" name="+" value="addTagname">+</button>
-                        </li>
-							<ul>
-								<li><a href="review1">한국 리뷰</a></li>
-								<li><a href="review2">중국 리뷰</a></li>
-								<li><a href="review3">일본 리뷰</a></li>
-								<li><a href="revu기ew4">미국 리뷰</a></li>
-							</ul>
-						<li>
-                            <a href="forum">포럼</a>
-                            <button type="button" name="+" value="addTagname">+</button>
-                        </li>
-							<ul>
-								<li><a href="forum1">게임 포럼</a></li>
-								<li><a href="forum2">스마트폰 포럼</a></li>
-								<li><a href="forum3">자동차 포럼</a></li>
-							</ul>
-						<li>
-                            <a href="community">커뮤니티</a>
-                            <button type="button" name="+" value="addTagname">+</button>
-                        </li>
-					</ul>	
-				</nav>
-		<aside class="aside">
-			<h2>바로 가기</h2>
-			<ul>
-				<li><a href="#">참고 링크1</a></li>
-				<li><a href="#">참고 링크2</a></li>
-				<li><a href="#">참고 링크3</a></li>
-			</ul>
-		</aside>
         
 		<div class="bottommenu v">
 <!--
@@ -98,24 +50,6 @@
 				최상단으로 이동하기
 			</button>
 -->
-			<button type="button">
-				리플레쉬
-                <a href="javascript:location.reload()">
-				<img src='{% static "image/refresh.png" %}'>
-                </a>
-			</button>
-			<button type="button">
-				<img src='{% static "image/setting.png" %}'>
-				셋업 창 열기
-			</button>
-            <button type="button">
-				<img src='{% static "image/starbtn.png" %}'>
-				즐겨찾기 버튼
-			</button>
-            <button type="button">
-				<img src='{% static "image/friendbtn.png" %}'>
-				친구가 좋아하는 항목보기
-			</button>
 			<span class="userlogin">
 				{% if user.is_authenticated %}
 				<strong class="username">
@@ -125,27 +59,11 @@
 					<img src='{% static "image/login.png" %}'>
 					로그아웃하기
 				</a>
-               {%else%}
-                <strong class="username">
-					로그인 
-				</strong>
-				<form method="post" action="{% url 'django.contrib.auth.views.login' %}" class="login btn btn-primary btn-lg" role="login">
-                    {% csrf_token %}
-                    <button type="submit">
-                        <img src='{% static "image/login.png" %}'>
-                        로그인하기
-                    </button>
-                </form>
                {%endif%}
 
 			</span>
 		</div>
-        <div class="write">
-            <button>
-                <a href="{% url 'write' %}"><img src='{% static "image/writeIcon.png" %}'>글쓰기</a>
-            </button>
-        </div>
-    	<footer>
+      	<footer>
 			<p>Copyright &copy; 31nov All rights reserved.</p>
 		</footer>
 	</div>
@@ -156,7 +74,7 @@
 -->
     <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <script src='{% static "js/index.js" %}'></script>
+    <script src='{% static "js/write.js" %}'></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

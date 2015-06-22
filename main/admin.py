@@ -7,14 +7,14 @@ from main.models import *
 admin.site.register(Article)
 admin.site.register(Reply)
 admin.site.register(Game)
-
+ 
 class ProfileInline(admin.StackedInline):
-    model = UserInfo
+    model = Profile
     can_delete = False
-    verbose_name_plural = '세부정보'
-
+    verbose_name_plural = '프로필'
+ 
 class UserAdmin(UserAdmin):
-    inlines = (ProfileInline,)
+    inlines = (ProfileInline, )
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

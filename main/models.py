@@ -4,22 +4,25 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class UserInfo(models.Model):
+class Profile(models.Model):
     class Meta:
-        verbose_name = u'세부정보'
-        verbose_name_plural = u'세부정보'
+        verbose_name = u'프로필'
+        verbose_name_plural = u'프로필'
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    pic = models.FileField(verbose_name=u'사진', blank=True, default='media/user/emptyIser.png')
+    nick = models.CharField(verbose_name=u'별명', max_length=50, blank=True,)
+    pic = models.ImageField(verbose_name=u'사진', blank=True, default='emptyUser.png', upload_to='user')
+#    
+#    def __str__(self):
+#        return ('user:%s, 이미지 파일-> %s') % (self.user.username, self.pic,)
 
 class Article(models.Model):
-    userInfo = models.ForeignKey(UserInfo)
     user = models.ForeignKey(User)
     
     title = models.CharField('글 제목', max_length=200)
     content = models.TextField('글 내용')
     written_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    file_image = models.FileField('이미지:',blank=True, default='X')
+    file_image = models.ImageField('이미지:',blank=True, default='X', upload_to='img/%Y/%m')
     
     file_game_apk = models.FileField('게임 -> AOS :',blank=True, default='X')
     file_game_ios = models.FileField('게임 -> IOS :',blank=True, default='X')
@@ -30,7 +33,7 @@ class Article(models.Model):
     like_count = models.IntegerField('좋아요 수', default=0)
     
     def __str__(self):
-        return ('작성자: %s // 제목: %s // 사진: %s //파일-> [img:%s], [apk:%s], [ios:%s], [exe:%s], [mac:%s]') % (self.user.username, self.title, self.userInfo.pic, self.file_image, self.file_game_apk, self.file_game_ios, self.file_game_exe, self.file_game_mac)
+        return ('작성자: %s // 제목: %s //파일-> [img:%s], [apk:%s], [ios:%s], [exe:%s], [mac:%s]') % (self.user.username, self.title, self.file_image, self.file_game_apk, self.file_game_ios, self.file_game_exe, self.file_game_mac)
 
 class Reply(models.Model):
     article = models.ForeignKey(Article)

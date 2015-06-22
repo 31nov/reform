@@ -59,7 +59,8 @@
                         <div class="circle1 a d"></div><div class="circle1 b d"></div><div class="circle1 c d"></div>
                     </div>
                     <a class="writeUserInfor">
-                        <img class="userPic" src='{% static "image/{{article.user.userInfo.pic}}" %}'><!--작성자 사진-->
+                        <img class="emptyPic" src='{% static "image/emptyUser.png" %}'>
+                        <img class="userPic" src='{{article.user.profile.pic}}'><!--작성자 사진-->
                         <span>
                             <p class="userName">{{article.user.username}}</p><br><!--작성자 명-->
                         </span>
@@ -71,7 +72,10 @@
                     </div>
                     <div class="overView"><!--글 내용-->
                         <article>
-                            {{article.file_image}}<br>
+                        <hr>
+                        {% if article.file_image != 'X' %}
+                            <img class="image" src="{{article.file_image}}"><br>
+                        {% endif %}
                             {{article.content}}
                         </article>
                         <!--친구 확인 여부-->
@@ -106,8 +110,8 @@
                             </ul>
                         </div>
                     </div>
-                </li>
             {% endfor %}
+                </li>
             </ul>
         </main>
 		<nav class="lnb">
@@ -211,11 +215,13 @@
 
 			</span>
 		</div>
+        {% if user.is_authenticated %}
         <div class="write">
             <button>
                 <a href="{% url 'write' %}"><img src='{% static "image/writeIcon.png" %}'>글쓰기</a>
             </button>
         </div>
+       {%endif%}
     	<footer>
 			<p>Copyright &copy; 31nov All rights reserved.</p>
 		</footer>

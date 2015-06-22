@@ -97,10 +97,8 @@ LOGIN_URL = '/login'
 
 
 ##file 연결
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = (
-#    ("user" ,'/Users/Mac/workspace/survey/main/media'),
-#)
+MEDIA_URL = '/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'main/media/')
 
 
 

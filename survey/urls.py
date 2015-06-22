@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from polls.views import *
 from main.views import *
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = patterns('',
     # Examples:
@@ -29,4 +31,6 @@ urlpatterns = patterns('',
     url(r"^polls/submit/$",                                   submit_poll           , name='submit_poll'),
 
 )
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
