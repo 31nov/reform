@@ -19,11 +19,16 @@
             </div>
         </header>
 		<main id="main">
-                <form class="createInForm" action="{% url 'signup_submit' %}" method="POST">
+                <form class="createInForm" action="{% url 'signup_submit' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group a">
-                        <label for="username">Email (ID)<sup> 필수항목</sup></label>
-                        <input name="username" type="email" class="form-control idInput" placeholder="Enter email" value="{{userEmail}}" required>
+                        <label for="username">ID<sup> 필수항목</sup></label>
+                        <input name="username" type="text" class="form-control idInput" placeholder="Enter ID" value="{{username}}" required>
+                        <p>영문, 숫자, 특수문자( @ . + - _ )만 가능합니다.</p>
+                    </div>
+                    <div class="form-group a">
+                        <label for="email">Email<sup> 필수항목</sup></label>
+                        <input name="email" type="email" class="form-control idInput" placeholder="Enter email" value="{{userEmail}}" required>
                         <p>영문, 숫자, 특수문자( @ . + - _ )만 가능합니다.</p>
                     </div>
                     <div class="form-group b">

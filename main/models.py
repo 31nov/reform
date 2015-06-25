@@ -1,6 +1,10 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse_lazy
+from django.contrib import admin
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
@@ -19,10 +23,11 @@ class Article(models.Model):
     user = models.ForeignKey(User)
     
     title = models.CharField('글 제목', max_length=200)
-    content = models.TextField('글 내용')
+    content = models.TextField('글 내용', blank=True)
     written_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
-    file_image = models.ImageField('이미지:',blank=True, default='X', upload_to='img/%Y/%m')
+    file_image = models.ImageField('이미지:',blank=True, upload_to='img/%Y/%m')
+    imgName = models.CharField('imgName', max_length=200, blank=True)
     
     file_game_apk = models.FileField('게임 -> AOS :',blank=True, default='X')
     file_game_ios = models.FileField('게임 -> IOS :',blank=True, default='X')
@@ -33,7 +38,7 @@ class Article(models.Model):
     like_count = models.IntegerField('좋아요 수', default=0)
     
     def __str__(self):
-        return ('작성자: %s // 제목: %s //파일-> [img:%s], [apk:%s], [ios:%s], [exe:%s], [mac:%s]') % (self.user.username, self.title, self.file_image, self.file_game_apk, self.file_game_ios, self.file_game_exe, self.file_game_mac)
+        return ('%s :작성자: %s // 제목: %s //파일-> [img:%s], [apk:%s], [ios:%s], [exe:%s], [mac:%s]') % (self.id, self.user.username, self.title, self.file_image, self.file_game_apk, self.file_game_ios, self.file_game_exe, self.file_game_mac)
 
 class Reply(models.Model):
     article = models.ForeignKey(Article)

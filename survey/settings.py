@@ -100,6 +100,10 @@ LOGIN_URL = '/login'
 MEDIA_URL = '/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main/media/')
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 
 
 

@@ -253,17 +253,16 @@ jQuery(function($){
             $('html,body').animate({'scrollTop':preTop},200);
         }else{//닫혀 있을 때
             preTop = $win.scrollTop();
-            $header_single.css({visibility:'visible'});
+
             $this.addClass('listOn').css({display:'block'}).find('.overView').slideDown(200).end()
                 .css({height : 'auto'},200);
+            
             var articleHeight = parseInt($this.css('height').slice(0,-2));
             var image = parseInt($this.find('article').css('height').slice(0,-2));
-            console.log(articleHeight);
-            console.log(image);
             $this.css({height:articleHeight+image+80});
             //댓글이 달리면 이에 따라 80px값을 늘려주도록 넣어야 함
             $mainListOther.css({display:'block'}).toggle('slide');
-            $('html,body').animate({'scrollTop':listHeight},200);
+            $('html,body').animate({'scrollTop':0},200);
         }
     });
     var $refresh = $('.bottommenu img[src="./image/refresh.png"]');

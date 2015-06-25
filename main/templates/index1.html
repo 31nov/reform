@@ -68,15 +68,27 @@
                     </a>
                     <p class="writeDate">{{article.written_date}}</p><br><!--작성 일자, 시간-->
                     <div class="writeTitleDiv">
+                        {% if article.file_image != '' %}
+                        <img class='imgIcon' src='{%static "image/imgIcon.png" %}'>
+                        {% endif %}
                         <span class="writeTitle">{{article.title}}</span><!--게시글 제목-->
                     </div>
                     <div class="overView"><!--글 내용-->
                         <article>
-                        <hr>
-                        {% if article.file_image != 'X' %}
-                            <img class="image" src="{{article.file_image}}"><br>
+                        {% if error_message %}
+                        <div>
+                            <div class="alert alert-danger" role="alert">
+                            {{error_message}}
+                            </div>
+                        </div>
                         {% endif %}
-                            {{article.content}}
+                        <hr>
+                        {{article.content}}<br>
+                        {% if article.file_image != '' %}
+                            <div class="imgBox">
+                                <img class="image" src="{{article.file_image}}">
+                            </div>
+                        {% endif %}
                         </article>
                         <!--친구 확인 여부-->
                         <div class="countView"><!--block-->

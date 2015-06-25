@@ -1,7 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 from polls.views import *
-from main.views import *
+from main.models import *
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -19,8 +21,9 @@ urlpatterns = patterns('',
     url(r'^signup/$',        'main.views.signup',                                                 name='signup'),
     url(r'^signup/submit/$', 'main.views.signup_submit',                                          name='signup_submit'),
     url(r'^logout/$',        'main.views.user_logout',                                            name='user_logout'),
+                       
     url(r'^write/$',         'main.views.write',                                                  name='write'),
-    url(r'^submit_write/$',  'main.views.submit_write',                                           name='submit_write'),
+    url(r'^submit/$',  'main.views.submit_write',                                           name='submit'),
     
     #polls
     url(r'^polls/$',                                          'polls.views.index'    , name='index2'),   

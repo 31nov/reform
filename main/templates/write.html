@@ -21,7 +21,16 @@
             
 		</header>
 		<main id="main">
-            <form method="post" action="{% url 'submit_write' %}">
+            <p>{{title}}</p>
+            <p>{{content}}</p>
+            {% if error_message %}
+            <div>
+                <div class="alert alert-danger" role="alert">
+                {{error_message}}
+                </div>
+            </div>
+            {% endif %}
+            <form method="post" action="{% url 'submit' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     <label>글제목</label>
@@ -31,8 +40,8 @@
                     <label>내용</label>
                     <textarea name="content" rows="30" class="form-control" ></textarea>
                 </div>
-                <div class="form-group">
-                    <input type="file" id="id_image_file" name="image_file">
+                <div class="form-group imgBtn">
+                    <input type="file" name="file_image" value="">
                 </div>
                 <div class="form-group">
                     <div class="btn-group pull-right">
