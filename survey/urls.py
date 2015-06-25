@@ -23,8 +23,11 @@ urlpatterns = patterns('',
     url(r'^logout/$',        'main.views.user_logout',                                            name='user_logout'),
                        
     url(r'^write/$',         'main.views.write',                                                  name='write'),
-    url(r'^submit/$',  'main.views.submit_write',                                           name='submit'),
-    
+    url(r'^submit/$',        'main.views.submit_write',                                           name='submit'),
+#    url(r'^modify/$',        'main.views.modify_article',                                         name='modify_article'),
+#    url(r'^update/$',        'main.views.update_article',                                         name='update_article'),
+    url(r'^delete/(?P<article_id>\d+)/$',        'main.views.delete_article',                                         name='delete_article'),
+                       
     #polls
     url(r'^polls/$',                                          'polls.views.index'    , name='index2'),   
     url(r'^polls/(?P<poll_id>\d+)/$',                         'polls.views.detail'   , name='detail'),   

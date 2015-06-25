@@ -75,20 +75,32 @@
                     </div>
                     <div class="overView"><!--글 내용-->
                         <article>
+                        
                         {% if error_message %}
-                        <div>
-                            <div class="alert alert-danger" role="alert">
-                            {{error_message}}
+                            <div>
+                                <div class="alert alert-danger" role="alert">
+                                {{error_message}}
+                                </div>
                             </div>
-                        </div>
                         {% endif %}
-                        <hr>
-                        {{article.content}}<br>
+                        
+                            <hr>
+                        {% if user.id == article.user.id %}
+                            <div class="pull-right">
+                                <a href="{% url 'delete_article' article.id%}" class="btn btn-danger">삭제</a>
+                            </div>
+                        {% endif %}
+                        
+                        {% if article.content != '' %}
+                            <pre>{{article.content}}</pre>
+                        {% endif %}
+                        
                         {% if article.file_image != '' %}
                             <div class="imgBox">
                                 <img class="image" src="{{article.file_image}}">
                             </div>
                         {% endif %}
+                        
                         </article>
                         <!--친구 확인 여부-->
                         <div class="countView"><!--block-->

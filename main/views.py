@@ -150,6 +150,54 @@ def submit_write(request):
         request.session['error']='올바른 요청이 아닙니다.'
         return redirect('write')
 
+#@login_required
+#def modify_article(request):
+##    article = get_object_or_404(Article, id=article_id)
+#    try:
+#        if request.session['error']:
+#            error_message = request.session['error']
+#            del request.session['error']
+#    except KeyError:
+#        error_message = None
+#    if request.user.id == article.user_id:
+#        context = {
+#            'article' : article,
+#            'error_message' : error_message
+#        }
+#        return render(request, 'modify.html', context)
+#    else:
+#        request.session['error'] = '작성자가 아닙니다.'
+#        return redirect('read_article', board_id, article_id)
+    
+#@login_required
+#def update_article(request):
+#    article = get_object_or_404(Article, id=article_id)
+#    try:
+#        title = request.POST['title'].strip()
+#        content = request.POST['content'].strip()
+#        if title and content:
+#            if request.user.id == article.user_id:
+#                article.title = title
+#                article.content = content
+#                article.save()
+#            else:
+#                request.session['error'] = '작성자가 아닙니다.'
+#            return redirect('read_article', board_id, article_id)
+#        else:
+#            request.session['error'] = '올바른 내용을 입력해주세요.'
+#    except KeyError:
+#        request.session['error'] = '올바른 요청이 아닙니다.'
+#    return redirect('modify_article', board_id, article_id)
+
+@login_required
+def delete_article(request,article_id):
+    article = get_object_or_404(Article, id=article_id)
+    if request.user.id == article.user_id:
+        article.delete()
+        return redirect('index')
+    else:
+        request.session['error'] = '작성자가 아닙니다.'
+        return redirect('index')
 
 
 
