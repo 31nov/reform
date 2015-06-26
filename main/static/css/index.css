@@ -254,7 +254,9 @@
 	#main{
 		min-height: 200px;
 		position: relative;
-		margin: 47px 5px 5px 33px;
+		margin: 47px 5px 5px 5px;
+/*        nav바 생성 시 아래 마진 적용*/
+/*		margin: 47px 5px 5px 33px;*/
 	}
     
     #main> ul{
@@ -429,7 +431,7 @@
                 border-bottom-left-radius: 0;
             }
                 .imgIcon{
-                    margin-top: -5px;
+                    margin-top: -14px;
                     margin-right: 5px;
                     width: 20px;
                 }
@@ -437,6 +439,8 @@
                     display: inline-block;
                     font-weight: 300;
                     text-overflow: ellipsis;
+                    overflow: hidden;
+                    width: 70%;
                 }
         .hiddenView{
             display: none;
@@ -460,8 +464,41 @@
 /*            min-height: 220px;*/
         }
         .overView article hr{
-            margin-top: 0;   
+            margin-top: 2px; 
+            margin-bottom: 5px;
         }
+        .overView article pre{
+            background: none;
+            border: none;
+        }
+            .rightBtn{
+                position: absolute;
+                top: -27px;
+                right: 10px;
+                border-radius: 16px;
+                box-shadow: 4px 1px 4px #bbb;
+            }
+            .deleteIcon{
+                width: 42px;
+                height: 32px;
+                border-bottom-right-radius: 16px;
+                border-top-right-radius: 16px;
+                display: inline-block;
+                float: right;
+            }
+            .modifyIcon{
+                width: 42px;
+                height: 32px;
+                border-bottom-left-radius: 16px;
+                border-top-left-radius: 16px;
+                display: inline-block;
+                float: right;
+            }
+            .rightBtn a img{
+                height: 100%;
+                margin: 0 5px;
+                padding: 10%;
+            }
             .imgBox{
 /*                position: relative;*/
                 background: #f5f5f5;
@@ -469,6 +506,7 @@
                 border-radius: 4px;
 /*                box-shadow: 0 0 20px #aaa;*/
                 border: 1px solid #ccc;
+                margin-top: 5px;
             }
             .image{
                 width: 100%; 
@@ -546,7 +584,9 @@
                 border-radius: 4px;
             }
 /*main Line End*/
-
+	.nav{
+		display: none;
+	}
 	.aside{
 		display: none;
 	}

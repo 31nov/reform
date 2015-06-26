@@ -83,12 +83,18 @@
                                 </div>
                             </div>
                         {% endif %}
-                        
+                        {% if article.file_image != '' or article.content != '' %}
                             <hr>
+                        {% endif %}
                         {% if user.id == article.user.id %}
-                            <div class="pull-right">
-                                <a href="{% url 'delete_article' article.id%}" class="btn btn-danger">삭제</a>
-                            </div>
+                            <span class="rightBtn">
+                                <a href="{% url 'delete_article' article.id%}" class="deleteIcon">
+                                    <img src='{%static "image/delete.png" %}'>
+                                </a>
+                                <a href="" class="modifyIcon">
+                                    <img src='{%static "image/modify.png" %}'>
+                                </a>
+                            </span>
                         {% endif %}
                         
                         {% if article.content != '' %}
@@ -138,6 +144,7 @@
                 </li>
             </ul>
         </main>
+<!--
 		<nav class="lnb">
  				  <button class="lnbbtn" type="button">
 				  	<img src='{% static "image/lnbbtn2.png" %}'>
@@ -181,6 +188,8 @@
                         </li>
 					</ul>	
 				</nav>
+-->
+<!--
 		<aside class="aside">
 			<h2>바로 가기</h2>
 			<ul>
@@ -190,6 +199,7 @@
 			</ul>
 		</aside>
         
+-->
 		<div class="bottommenu v">
 <!--
 			<button class="gototop" type="button">

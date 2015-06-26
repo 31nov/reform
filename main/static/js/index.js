@@ -187,13 +187,13 @@ jQuery(function($){
     });
     //7-1. 색상 넣기
         
-    var backColor = ['#f3bbcc','#6B78BF','#F6F1DB','#F294AD', '#3366cc', '#f2f2f2'];
+    var backColor = ['#f3bbcc','#6B78BF','#F6F1DB','#F294AD', '#3366cc', '#f2f2f2', '#818FA3'];
 //    var backColor = ['#f3bbcc','#233F61','#F6F1DB','#F294AD'];
 //    var backColor = ['#F294AD','#F279A6','#C0D3C7','#7BA595'];
 //    var backColor = ['#F2949C','#F2949C','#C0D3C7','#7BA595'];
 //    var backColor = ['#DAD0D0','#233F61','#F6F1DB','#B57D9D'];
     
-    function mainColor(w,x,y,z,a,b){
+    function mainColor(w,x,y,z,a,b,c){
         //w: user 배경
         //x: 테두리
         //y: 배경
@@ -216,8 +216,10 @@ jQuery(function($){
         $('.overView >div').css({background:a});
         $('.write button').css({background:x});
         $('.write a').css({background:y});
+        $('.deleteIcon').css({background:z});
+        $('.modifyIcon').css({background:y});
     }
-    mainColor(backColor[0],backColor[1],backColor[2],backColor[3], backColor[4], backColor[5]);
+    mainColor(backColor[0],backColor[1],backColor[2],backColor[3], backColor[4], backColor[5], backColor[6]);
     
     //9-1. 리스트 선택 변수
     var $mainList = $('#main>ul>li');
